@@ -2,9 +2,7 @@ import * as Joi from 'joi';
 
 import { AppConfig } from 'src/config/app.config';
 import { Injectable } from '@nestjs/common';
-import { Types } from 'mongoose';
 import { ApiResponseType } from '../interfaces';
-import { IAppDomains } from '../enums';
 
 @Injectable()
 export class Utils {
@@ -68,14 +66,14 @@ export class Utils {
   }
 
   generateTXRef() {
-    const key = `KALENDA_TX_REF${this.generateRef({
+    const key = `INVOICE_TX_REF${this.generateRef({
       length: 12,
     })}`.toUpperCase();
     return key;
   }
 
   generateTXHash() {
-    return `KALENDA_TX_HASH_REF${this.generateRef({
+    return `INVOICE_TX_HASH_REF${this.generateRef({
       length: 12,
     })}`.toUpperCase();
   }
@@ -150,178 +148,6 @@ export class Utils {
     return this.appConfig.env === 'development'
       ? 1234
       : Math.floor(Math.random() * 8999 + 1000);
-  }
-
-  generateOrderTimeline({
-    order_id,
-    order_type,
-  }: {
-    order_id: Types.ObjectId;
-    order_type: IAppDomains;
-  }) {
-    if (order_type === IAppDomains.KALENDA_FOOD) {
-      return {
-        order_id: order_id,
-        events: [
-          {
-            status: 'VENDOR_ACCEPTED',
-            message: 'Vendor has accepted your order',
-            timestamp: new Date(),
-            completed: true,
-          },
-          {
-            status: 'PREPARING_ORDER',
-            message: 'Vendor is preparing your order',
-            timestamp: null,
-            completed: false,
-          },
-          {
-            status: 'RIDER_EN_ROUTE_PICKUP',
-            message: 'Rider is on his way to pickup your food',
-            timestamp: null,
-            completed: false,
-          },
-          {
-            status: 'RIDER_PICKED_UP',
-            message: 'Rider has picked your food',
-            timestamp: null,
-            completed: false,
-          },
-          {
-            status: 'RIDER_EN_ROUTE_DELIVERY',
-            message: 'Rider is on his way to deliver your food',
-            timestamp: null,
-            completed: false,
-          },
-          {
-            status: 'DELIVERED',
-            message: 'Rider has delivered your food',
-            timestamp: null,
-            completed: false,
-          },
-        ],
-      };
-    } else if (order_type === IAppDomains.KALENDA_LAUNDRY) {
-      return {
-        order_id: order_id,
-        events: [
-          {
-            status: 'VENDOR_ACCEPTED',
-            message: 'Vendor has accepted your order',
-            timestamp: new Date(),
-            completed: true,
-          },
-          {
-            status: 'PICKUP_SCHEDULED',
-            message: 'Pickup has been scheduled for your laundry',
-            timestamp: null,
-            completed: false,
-          },
-          {
-            status: 'RIDER_PICKED_UP',
-            message: 'Rider has picked up your laundry',
-            timestamp: null,
-            completed: false,
-          },
-          {
-            status: 'LAUNDRY_IN_PROGRESS',
-            message: 'Your laundry is in progress',
-            timestamp: null,
-            completed: false,
-          },
-          {
-            status: 'READY_FOR_DELIVERY',
-            message: 'Your laundry is ready for delivery',
-            timestamp: null,
-            completed: false,
-          },
-          {
-            status: 'RIDER_EN_ROUTE_DELIVERY',
-            message: 'Rider is on his way to deliver your laundry',
-            timestamp: null,
-            completed: false,
-          },
-          {
-            status: 'DELIVERED',
-            message: 'Rider has delivered your laundry',
-            timestamp: null,
-            completed: false,
-          },
-        ],
-      };
-    } else if (order_type === IAppDomains.KALENDA_GAS) {
-      return {
-        order_id: order_id,
-        events: [
-          {
-            status: 'VENDOR_ACCEPTED',
-            message: 'Vendor has accepted your order',
-            timestamp: new Date(),
-            completed: true,
-          },
-          {
-            status: 'PREPARING_ORDER',
-            message: 'Vendor is preparing your gas order',
-            timestamp: null,
-            completed: false,
-          },
-          {
-            status: 'RIDER_EN_ROUTE_DELIVERY',
-            message: 'Rider is on his way to deliver your gas',
-            timestamp: null,
-            completed: false,
-          },
-          {
-            status: 'DELIVERED',
-            message: 'Rider has delivered your gas',
-            timestamp: null,
-            completed: false,
-          },
-        ],
-      };
-    } else if (order_type === IAppDomains.KALENDA_COURIER) {
-      return {
-        order_id: order_id,
-        events: [
-          {
-            status: 'ORDER_PLACED',
-            message: 'Your courier order has been placed',
-            timestamp: new Date(),
-            completed: true,
-          },
-          {
-            status: 'RIDER_ASSIGNED',
-            message: 'A rider has been assigned to your order',
-            timestamp: null,
-            completed: false,
-          },
-          {
-            status: 'PICKUP_SCHEDULED',
-            message: 'Pickup has been scheduled for your courier order',
-            timestamp: null,
-            completed: false,
-          },
-          {
-            status: 'RIDER_PICKED_UP',
-            message: 'Rider has picked up your package',
-            timestamp: null,
-            completed: false,
-          },
-          {
-            status: 'RIDER_EN_ROUTE_DELIVERY',
-            message: 'Rider is on his way to deliver your package',
-            timestamp: null,
-            completed: false,
-          },
-          {
-            status: 'DELIVERED',
-            message: 'Rider has delivered your package',
-            timestamp: null,
-            completed: false,
-          },
-        ],
-      };
-    }
   }
 
   /******

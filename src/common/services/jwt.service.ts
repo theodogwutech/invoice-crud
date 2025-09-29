@@ -4,7 +4,7 @@ import { stringify } from 'querystring';
 import { AppConfig } from 'src/config/app.config';
 
 @Injectable()
-export class KalendaJwtService {
+export class InvoiceJwtService {
   constructor(
     private readonly jwtService: JwtService,
     private readonly appConfig: AppConfig,
