@@ -27,9 +27,9 @@ export class InvoiceService {
     tax,
     discount,
     currency,
-    status,
     invoice_number,
     additional_info,
+    is_draft = false,
     items,
   }: {
     customer: {
@@ -39,10 +39,10 @@ export class InvoiceService {
     };
     due_date: Date;
     amount: number;
+    is_draft?: boolean;
     tax: number;
     discount: number;
     currency: string;
-    status: string;
     invoice_number: string;
     additional_info: string;
     items: {
@@ -50,6 +50,7 @@ export class InvoiceService {
       vehicle_make: string;
       vehicle_color: string;
       vehicle_amount: number;
+      vehicle_year: number;
       vehicle_image: string;
     }[];
   }) {
@@ -59,8 +60,8 @@ export class InvoiceService {
       amount,
       tax,
       discount,
+      status: !is_draft ? 'sent' : 'draft',
       currency,
-      status,
       invoice_number,
       additional_info,
       items,
@@ -213,7 +214,6 @@ export class InvoiceService {
       tax?: number;
       discount?: number;
       currency?: string;
-      status?: string;
       invoice_number?: string;
       additional_info?: string;
       items?: {
@@ -246,7 +246,6 @@ export class InvoiceService {
       tax: updateData.tax || invoice.tax,
       discount: updateData.discount || invoice.discount,
       currency: updateData.currency || invoice.currency,
-      status: updateData.status || invoice.status,
       invoice_number: updateData.invoice_number || invoice.invoice_number,
       additional_info: updateData.additional_info || invoice.additional_info,
       items: updateData.items || invoice.items,

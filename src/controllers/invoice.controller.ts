@@ -41,7 +41,7 @@ export class InvoiceController {
       success: result.success,
       code: result.code,
       message: result.message,
-      data: result,
+      data: result.data,
     });
   }
 
@@ -59,7 +59,7 @@ export class InvoiceController {
       tax,
       discount,
       currency,
-      status,
+      is_draft,
       invoice_number,
       additional_info,
       items,
@@ -72,7 +72,7 @@ export class InvoiceController {
       tax,
       discount,
       currency,
-      status,
+      is_draft: Boolean(is_draft),
       invoice_number,
       additional_info,
       items,
@@ -83,7 +83,7 @@ export class InvoiceController {
       success: result.success,
       code: result.code,
       message: result.message,
-      data: result,
+      data: result.data,
     });
   }
 
@@ -109,7 +109,7 @@ export class InvoiceController {
       success: true,
       code: HttpStatus.OK,
       message: 'Invoice summary fetched successfully',
-      data: result,
+      data: result.data,
     });
   }
 
@@ -161,7 +161,6 @@ export class InvoiceController {
       tax,
       discount,
       currency,
-      status,
       invoice_number,
       additional_info,
       items,
@@ -174,7 +173,6 @@ export class InvoiceController {
       tax,
       discount,
       currency,
-      status,
       invoice_number,
       additional_info,
       items,
@@ -185,7 +183,7 @@ export class InvoiceController {
       success: result.success,
       code: result.code,
       message: result.message,
-      data: result,
+      data: result.data,
     });
   }
 }

@@ -11,6 +11,9 @@ export const VehicleSchema: Schema = new Schema(
     vehicle_color: {
       type: String,
     },
+    vehicle_year: {
+      type: Number,
+    },
     vehicle_amount: {
       type: Number,
     },

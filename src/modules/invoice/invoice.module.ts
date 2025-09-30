@@ -16,4 +16,4 @@ import { AppConfig } from 'src/config/app.config';
   providers: [InvoiceRepository, InvoiceService, Utils, AppConfig],
   exports: [MongooseModule, InvoiceRepository, InvoiceService],
 })
-export class Invoice {}
+export class InvoiceModule {}

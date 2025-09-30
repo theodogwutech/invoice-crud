@@ -7,6 +7,7 @@ import {
   ValidateNested,
   IsArray,
   IsEmail,
+  IsBoolean,
 } from 'class-validator';
 import { Type } from 'class-transformer';
 
@@ -41,6 +42,9 @@ class CreateInvoiceItemDto {
 
   @IsString()
   vehicle_image: string;
+
+  @IsNumber()
+  vehicle_year: number;
 }
 
 export class CreateInvoiceDto {
@@ -64,9 +68,9 @@ export class CreateInvoiceDto {
   @IsString()
   currency: string;
 
-  @IsString()
+  @IsBoolean()
   @IsOptional()
-  status?: string;
+  is_draft?: string;
 
   @IsString()
   invoice_number: string;

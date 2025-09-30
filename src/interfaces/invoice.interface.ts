@@ -4,6 +4,7 @@ export interface IInvoiceItem {
   vehicle_make?: string;
   vehicle_model?: string;
   vehicle_color?: string;
+  vehicle_year?: number;
   vehicle_amount?: number;
   vehicle_image?: string;
 }

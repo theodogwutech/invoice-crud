@@ -34,6 +34,7 @@ export const InvoiceSchema = new Schema(
 
     status: {
       type: String,
+      enum: ['draft', 'sent', 'paid', 'overdue'],
       default: 'draft',
     },
 
@@ -54,6 +55,9 @@ export const InvoiceSchema = new Schema(
           type: String,
         },
         vehicle_amount: {
+          type: Number,
+        },
+        vehicle_year: {
           type: Number,
         },
         vehicle_image: {

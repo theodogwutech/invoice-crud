@@ -17,6 +17,7 @@ export class VehicleRepository {
       vehicle_color: string;
       vehicle_amount: number;
       vehicle_image: string;
+      vehicle_year: number;
     },
     session: any = null,
   ): Promise<IVehicleDocument> {

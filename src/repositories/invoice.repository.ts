@@ -31,6 +31,7 @@ export class InvoiceRepository {
         vehicle_color: string;
         vehicle_amount: number;
         vehicle_image: string;
+        vehicle_year: number;
       }[];
     },
     session: any = null,
