@@ -84,8 +84,8 @@ export class InvoiceService {
   }
 
   async getAllInvoices({
-    page,
-    perPage,
+    page = 1,
+    perPage = 10,
     status,
     search,
   }: {
