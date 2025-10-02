@@ -45,6 +45,29 @@ export class InvoiceController {
     });
   }
 
+  @Get(INVOICE_ROUTES.GET_INVOICE)
+  async getInvoice(@Req() req: Request, @Res() res: Response) {
+    if (!req.params.invoice_id) {
+      return this.utils.apiResponse({
+        res,
+        success: false,
+        code: HttpStatus.BAD_REQUEST,
+        message: 'Invoice id is required',
+      });
+    }
+    const result = await this.invoiceService.getInvoice({
+      invoice_id: req.params.invoice_id,
+    });
+
+    return this.utils.apiResponse({
+      res,
+      success: result.success,
+      code: result.code,
+      message: result.message,
+      data: result.data,
+    });
+  }
+
   @Post(INVOICE_ROUTES.CREATE_INVOICE)
   async createInvoice(
     @Req() req: Request,

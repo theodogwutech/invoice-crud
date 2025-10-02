@@ -17,7 +17,7 @@ export class InvoiceService {
 
     const padded = String(nextNumber).padStart(5, '0');
 
-    return `${padded}`;
+    return `INV-${padded}`;
   }
 
   async createInvoice({
@@ -179,6 +179,24 @@ export class InvoiceService {
         outstandingInvoices: outstandingInvoices.length,
         outstandingAmount,
       },
+    };
+  }
+
+  async getInvoice({ invoice_id }: { invoice_id: string }) {
+    const invoice = await this.invoiceRepository.getOne({ invoice_id });
+    if (!invoice) {
+      return {
+        success: false,
+        code: HttpStatus.NOT_FOUND,
+        message: `Invoice not found`,
+      };
+    }
+
+    return {
+      success: true,
+      code: HttpStatus.OK,
+      message: `Invoice fetched successfully`,
+      data: invoice,
     };
   }
 
