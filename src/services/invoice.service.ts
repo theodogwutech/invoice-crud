@@ -17,7 +17,7 @@ export class InvoiceService {
 
     const padded = String(nextNumber).padStart(5, '0');
 
-    return `INV-${padded}`;
+    return `${padded}`;
   }
 
   async createInvoice({
