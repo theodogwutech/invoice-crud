@@ -243,7 +243,7 @@ export class InvoiceService {
       }[];
     },
   ) {
-    const invoice = await this.invoiceRepository.getOne({ invoice_id });
+    const invoice = await this.invoiceRepository.getOne({ _id: invoice_id });
     if (!invoice) {
       return {
         success: false,
@@ -270,7 +270,7 @@ export class InvoiceService {
     };
 
     const updatedInvoice = await this.invoiceRepository.atomicUpdate(
-      { invoice_id },
+      { _id: invoice_id },
       {
         $set: {
           ...data,

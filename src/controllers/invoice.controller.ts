@@ -164,11 +164,11 @@ export class InvoiceController {
   async updateInvoice(
     @Req() req: Request,
     @Res() res: Response,
-    @Query('invoice_id') invoice_id: string,
+
     @Body(new JoiValidationPipe(createInvoiceValidationSchema))
     body: CreateInvoiceDto,
   ) {
-    if (!invoice_id) {
+    if (!req.params.invoice_id) {
       return this.utils.apiResponse({
         res,
         success: false,
@@ -189,17 +189,20 @@ export class InvoiceController {
       items,
     } = body;
 
-    const result = await this.invoiceService.editInvoice(invoice_id, {
-      customer,
-      due_date,
-      amount,
-      tax,
-      discount,
-      currency,
-      invoice_number,
-      additional_info,
-      items,
-    });
+    const result = await this.invoiceService.editInvoice(
+      req.params.invoice_id,
+      {
+        customer,
+        due_date,
+        amount,
+        tax,
+        discount,
+        currency,
+        invoice_number,
+        additional_info,
+        items,
+      },
+    );
 
     return this.utils.apiResponse({
       res,
