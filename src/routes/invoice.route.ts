@@ -4,6 +4,6 @@ export enum INVOICE_ROUTES {
   CREATE_INVOICE = 'create',
   SUMMARY = 'summary',
   DELETE = 'delete',
-  UPDATE = 'update',
+  UPDATE = 'update/:invoice_id',
   INVOICE_NUMBER = 'invoice-number',
 }
