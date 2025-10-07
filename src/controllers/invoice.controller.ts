@@ -7,7 +7,6 @@ import {
   Param,
   Post,
   Put,
-  Query,
   Req,
   Res,
 } from '@nestjs/common';
@@ -157,7 +156,6 @@ export class InvoiceController {
       success: result.success,
       code: result.code,
       message: result.message,
-      data: result,
     });
   }
 

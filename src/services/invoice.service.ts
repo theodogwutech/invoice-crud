@@ -201,7 +201,7 @@ export class InvoiceService {
   }
 
   async deleteInvoice(invoice_id: string) {
-    const invoice = await this.invoiceRepository.getOne({ invoice_id });
+    const invoice = await this.invoiceRepository.getOne({ _id: invoice_id });
     if (!invoice) {
       return {
         success: false,
