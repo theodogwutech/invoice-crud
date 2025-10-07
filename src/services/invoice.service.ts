@@ -210,7 +210,7 @@ export class InvoiceService {
       };
     }
 
-    await this.invoiceRepository.delete({ invoice_id });
+    await this.invoiceRepository.delete({ _id: invoice_id });
 
     return {
       success: true,

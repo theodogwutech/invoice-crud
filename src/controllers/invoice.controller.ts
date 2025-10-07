@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   HttpStatus,
+  Param,
   Post,
   Put,
   Query,
@@ -139,7 +140,7 @@ export class InvoiceController {
   @Delete(INVOICE_ROUTES.DELETE)
   async deletesInvoice(
     @Res() res: Response,
-    @Query('invoice_id') invoice_id: string,
+    @Param('invoice_id') invoice_id: string,
   ) {
     if (!invoice_id) {
       return this.utils.apiResponse({
